@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    public Vector3 Direction;
-
     [SerializeField]
     public float Speed = 400.0F;
 
@@ -12,7 +10,7 @@ public class PlayerBullet : MonoBehaviour
 
     public void FixedUpdate()
     {
-        transform.Translate(Direction * Speed * Time.fixedDeltaTime);
+        transform.Translate(transform.up * Speed * Time.fixedDeltaTime, Space.World);
 
         if (transform.position.sqrMagnitude > DestroyDistanceSquared)
         {

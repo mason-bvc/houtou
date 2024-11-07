@@ -40,8 +40,15 @@ public class Player : MonoBehaviour
             {
                 PlayerBullet bullet = Instantiate(_bulletPrefab);
 
+                //
+                // I really. Really. Really. Really. Really. Cannot believe I have to do this.
+                //
+
+                Vector2 relativePos = _bulletSpawnTransform.position - _mousePos;
+                float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
+
                 bullet.transform.position = _bulletSpawnTransform.position;
-                bullet.Direction = _bulletSpawnTransform.forward;
+                bullet.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
             }
 
             _shootTimer = ShootCooldownSeconds;
