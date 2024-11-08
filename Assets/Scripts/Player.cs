@@ -45,9 +45,10 @@ public class Player : MonoBehaviour
                 //
 
                 Vector2 relativePos = _bulletSpawnTransform.position - _mousePos;
+                Vector2 relativeNorm = relativePos.normalized;
                 float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
 
-                bullet.transform.position = _bulletSpawnTransform.position;
+                bullet.transform.position = _bulletSpawnTransform.position + new Vector3(relativeNorm.x, relativeNorm.y, 0) * -16;
                 bullet.transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
             }
 
